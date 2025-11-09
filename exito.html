@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aprobado - Bancolombia</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #FDDA24 0%, #FFA500 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 60px 40px;
+            text-align: center;
+            max-width: 500px;
+            box-shadow: 0 10px 50px rgba(0,0,0,0.2);
+        }
+        .checkmark {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: #4CAF50;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+            animation: scaleIn 0.5s ease;
+        }
+        @keyframes scaleIn {
+            from { transform: scale(0); }
+            to { transform: scale(1); }
+        }
+        .checkmark svg {
+            width: 60px;
+            height: 60px;
+            fill: white;
+        }
+        h1 {
+            color: #1A1919;
+            margin-bottom: 20px;
+        }
+        p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+        .amount {
+            font-size: 36px;
+            color: #4CAF50;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="checkmark">
+            <svg viewBox="0 0 24 24">
+                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+            </svg>
+        </div>
+        <h1>¡Crédito Aprobado!</h1>
+        <p>Tu crédito de libre inversión ha sido aprobado exitosamente</p>
+        <div class="amount">$10.000.000</div>
+        <p>El dinero estará disponible en tu cuenta en las próximas 24 horas</p>
+    </div>
+    
+    <script>
+        setTimeout(() => {
+            localStorage.clear();
+            window.location.href = 'index.html';
+        }, 5000);
+    </script>
+</body>
+</html>
