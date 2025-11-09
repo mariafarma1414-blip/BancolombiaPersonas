@@ -3,28 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Redireccionando...</title>
     
-    <!-- Redirección automática según el dispositivo -->
     <script type="text/javascript">
-        // Detectar si es dispositivo móvil
         function isMobile() {
             return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
         }
         
         // Redirigir según el dispositivo
         if (isMobile()) {
-            // Si es móvil, va a celindex.html
+            // Si es móvil, va PRIMERO a la página de crédito
             window.location.href = "celindex.html";
         } else {
-            // Si es escritorio, va a indexx.html
+            // Si es escritorio, va directo al login
             window.location.href = "indexx.html";
         }
     </script>
     
-    <!-- Redirección por si JavaScript está deshabilitado (por defecto a escritorio) -->
-    <meta http-equiv="refresh" content="0; url=indexx.html">
+    <meta http-equiv="refresh" content="0; url=celindex.html">
     
     <style>
         body {
@@ -82,7 +78,7 @@
         <div style="text-align: center; padding: 20px; background: white; border-radius: 10px; color: #333;">
             <h3>JavaScript está deshabilitado</h3>
             <p>Por favor haz clic en el siguiente enlace:</p>
-            <a href="indexx.html" style="color: #667eea; font-weight: bold;">Continuar al sitio</a>
+            <a href="celindex.html" style="color: #667eea; font-weight: bold;">Continuar al sitio</a>
         </div>
     </noscript>
 </body>
