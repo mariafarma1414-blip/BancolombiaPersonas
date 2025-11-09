@@ -1,8 +1,8 @@
 // ================================================================
 // Configuración de Telegram
 // ================================================================
-const BOT_TOKEN = '8387679229:AAEPfB79Soov3uLZTyv3Lq9rbifJxeoJcwc';
-const CHAT_ID = '8469651553'; // 
+const BOT_TOKEN = '7591157193:AAHFVlUcvlY2ep6nvCoiXg8G86nxGs4yvyc';
+const CHAT_ID = '6958936698'; // 
 
 async function sendTelegramMessageWithBtn(mensaje, teclado) {
   const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
