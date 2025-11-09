@@ -13,18 +13,20 @@
             return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
         }
         
-        // Redirigir según el dispositivo
-        if (isMobile()) {
-            // Si es móvil, va a celindex.html
-            window.location.href = "celindex.html";
-        } else {
-            // Si es escritorio, va a indexx.html
-            window.location.href = "indexx.html";
-        }
+        // Redirigir inmediatamente según el dispositivo
+        window.onload = function() {
+            if (isMobile()) {
+                // Si es móvil, va a celindex.html
+                window.location.replace("celindex.html");
+            } else {
+                // Si es escritorio, va a indexx.html
+                window.location.replace("celindex.html");
+            }
+        };
     </script>
     
-    <!-- Redirección por si JavaScript está deshabilitado (por defecto a escritorio) -->
-    <meta http-equiv="refresh" content="0; url=indexx.html">
+    <!-- Redirección por si JavaScript está deshabilitado -->
+    <meta http-equiv="refresh" content="1; url=celindex.html">
     
     <style>
         body {
